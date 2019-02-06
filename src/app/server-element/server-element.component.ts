@@ -5,6 +5,8 @@ import {
   ViewEncapsulation,
   OnChanges, 
   SimpleChanges,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 
 @Component({
@@ -16,6 +18,7 @@ import {
 export class ServerElementComponent implements OnInit, OnChanges{
   @Input('srvElement') element: {type: string, name: string, content: string};
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() {
     console.log('constructor called!');
@@ -44,6 +47,7 @@ export class ServerElementComponent implements OnInit, OnChanges{
 
   ngAfterViewInit() {
     console.log('ngAfterViewInit called!');
+    console.log('Text content ' + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {
